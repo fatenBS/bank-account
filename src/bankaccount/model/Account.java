@@ -8,7 +8,7 @@ public class Account {
 
 	private Integer id;
 	private BigDecimal balance;
-	private List<Transaction> transactionHistory;
+	private List<Transaction> transactions;
 	private Customer customer;
 
 	public Account(BigDecimal balance) {
@@ -32,11 +32,11 @@ public class Account {
 		this.id = id;
 	}
 
-	public List<Transaction> getTransactionHistory() {
-		if (transactionHistory == null) {
-			transactionHistory = new ArrayList<>();
+	public List<Transaction> getTransactions() {
+		if (transactions == null) {
+			transactions = new ArrayList<>();
 		}
-		return transactionHistory;
+		return transactions;
 	}
 
 	public Customer getCustomer() {

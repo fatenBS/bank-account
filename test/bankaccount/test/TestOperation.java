@@ -51,8 +51,8 @@ public class TestOperation {
 		accountService.doTransaction(account, new BigDecimal(500), TransactionType.DEPOSIT);
 		accountService.doTransaction(account, new BigDecimal(100), TransactionType.DEPOSIT);
 		accountService.doTransaction(account, new BigDecimal(300), TransactionType.WITHDRAWAL);
-		Assert.assertEquals(3, account.getTransactionHistory().size());
-		for (Transaction transaction : account.getTransactionHistory()) {
+		Assert.assertEquals(3, account.getTransactions().size());
+		for (Transaction transaction : account.getTransactions()) {
 			System.out.println(transaction.toString());
 
 		}

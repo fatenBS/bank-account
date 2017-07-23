@@ -6,14 +6,14 @@ import java.time.Instant;
 import bankaccount.model.Account;
 import bankaccount.model.Transaction;
 import bankaccount.model.TransactionType;
-import bankaccount.transaction.TransactionFactory;
-import bankaccount.transaction.TransactionFactory.TransactionFunction;
+import bankaccount.transaction.TransactionFunctionFactory;
+import bankaccount.transaction.TransactionFunctionFactory.TransactionFunction;
 
 public class AccountService {
 
 	public void doTransaction(Account account, BigDecimal amount, TransactionType transactionType)
 			throws UnsufficientBalanceException {
-		TransactionFunction transaction = TransactionFactory.getTransaction(transactionType);
+		TransactionFunction transaction = TransactionFunctionFactory.getTransactionFunction(transactionType);
 		BigDecimal result = transaction.doTransaction(amount, account);
 		if (result == null) {
 			throw new UnsufficientBalanceException();
@@ -22,6 +22,6 @@ public class AccountService {
 				.append(account.getCustomer().getPrenom()).toString();
 		Transaction transactionHistory = new Transaction(customerName, Instant.now(), amount, account.getBalance(),
 				transactionType, account.getId());
-		account.getTransactionHistory().add(transactionHistory);
+		account.getTransactions().add(transactionHistory);
 	}
 }
